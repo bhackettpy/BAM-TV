@@ -1,0 +1,54 @@
+{
+	"name": "Event sheet 1",
+	"events": [
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-key-pressed",
+					"objectClass": "Keyboard",
+					"sid": 713598732952987,
+					"parameters": {
+						"key": 37
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-mirrored",
+					"objectClass": "Player",
+					"sid": 687960773053943,
+					"parameters": {
+						"state": "mirrored"
+					}
+				}
+			],
+			"sid": 830565625746451
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-key-pressed",
+					"objectClass": "Keyboard",
+					"sid": 868760791692868,
+					"parameters": {
+						"key": 39
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-mirrored",
+					"objectClass": "Player",
+					"sid": 795560768206502,
+					"parameters": {
+						"state": "not-mirrored"
+					}
+				}
+			],
+			"sid": 713590955925405
+		}
+	],
+	"sid": 212594192488707
+}
