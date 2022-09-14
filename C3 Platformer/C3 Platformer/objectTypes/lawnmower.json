@@ -1,0 +1,113 @@
+{
+	"name": "Lawnmower",
+	"plugin-id": "Sprite",
+	"sid": 905982481388463,
+	"isGlobal": false,
+	"instanceVariables": [
+		{
+			"name": "action",
+			"type": "string",
+			"desc": "",
+			"sid": 293581807972867
+		}
+	],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Platform",
+			"name": "Platform",
+			"sid": 258105066332999
+		}
+	],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 30,
+						"height": 22,
+						"originX": 0.6333333333333333,
+						"originY": 0.6363636363636364,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 640657,
+						"collisionPoly": {
+							"points": [
+								0.23333333333333334,
+								0.09090909090909091,
+								0.6333333333333333,
+								0.2727272727272727,
+								0.7666666666666667,
+								0.4090909090909091,
+								0.9333333333333333,
+								0.6363636363636364,
+								0.8,
+								0.8636363636363636,
+								0.6333333333333333,
+								0.7272727272727273,
+								0.4,
+								0.9090909090909091,
+								0.3,
+								0.6363636363636364
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1
+					}
+				],
+				"sid": 442075838286204,
+				"name": "Right",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			},
+			{
+				"frames": [
+					{
+						"width": 30,
+						"height": 22,
+						"originX": 0.3666666666666667,
+						"originY": 0.6363636363636364,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 7637561,
+						"collisionPoly": {
+							"points": [
+								0.7,
+								0.6363636363636364,
+								0.6,
+								0.9090909090909091,
+								0.3666666666666667,
+								0.7272727272727273,
+								0.19999999999999996,
+								0.8636363636363636,
+								0.06666666666666665,
+								0.6363636363636364,
+								0.23333333333333328,
+								0.4090909090909091,
+								0.3666666666666667,
+								0.2727272727272727,
+								0.7666666666666666,
+								0.09090909090909091
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1
+					}
+				],
+				"sid": 576155134223084,
+				"name": "Left",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}
