@@ -1,0 +1,26 @@
+{
+	"name": "FakeBackground",
+	"plugin-id": "TiledBg",
+	"sid": 316805233146602,
+	"isGlobal": false,
+	"instanceVariables": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "solid",
+			"name": "Solid",
+			"sid": 434447750004378
+		}
+	],
+	"effectTypes": [],
+	"image": {
+		"width": 32,
+		"height": 32,
+		"originX": 0.5,
+		"originY": 0.5,
+		"originalSource": "",
+		"exportFormat": "lossless",
+		"exportQuality": 0.8,
+		"imageSpriteId": 6710053,
+		"useCollisionPoly": true
+	}
+}

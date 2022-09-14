@@ -253,9 +253,9 @@
 				{
 					"id": "is-overlapping-another-object",
 					"objectClass": "Player",
-					"sid": 832515614642283,
+					"sid": 346195219828057,
 					"parameters": {
-						"object": "TiledBackground"
+						"object": "FakeBackground"
 					}
 				}
 			],

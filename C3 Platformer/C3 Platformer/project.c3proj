@@ -85,7 +85,8 @@
 			"Text2",
 			"Lawnmower",
 			"Edge",
-			"Audio"
+			"Audio",
+			"FakeBackground"
 		],
 		"subfolders": []
 	},
