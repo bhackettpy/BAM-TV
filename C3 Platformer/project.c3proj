@@ -31,17 +31,17 @@
 			"bundled": false
 		},
 		{
-			"type": "behavior",
-			"id": "Platform",
-			"name": "Platform",
+			"type": "plugin",
+			"id": "Text",
+			"name": "Text",
 			"author": "Scirra",
 			"version": "r308",
 			"bundled": false
 		},
 		{
 			"type": "behavior",
-			"id": "scrollto",
-			"name": "Scroll To",
+			"id": "Platform",
+			"name": "Platform",
 			"author": "Scirra",
 			"version": "r308",
 			"bundled": false
@@ -53,6 +53,14 @@
 			"author": "Scirra",
 			"version": "r308",
 			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "scrollto",
+			"name": "Scroll To",
+			"author": "Scirra",
+			"version": "r308",
+			"bundled": false
 		}
 	],
 	"uniqueId": "8g68b5j0jib",
@@ -60,7 +68,11 @@
 		"items": [
 			"Player",
 			"TiledBackground",
-			"Keyboard"
+			"Keyboard",
+			"Camera",
+			"Sprite",
+			"lolGotEm",
+			"Lava"
 		],
 		"subfolders": []
 	},
@@ -72,8 +84,7 @@
 	},
 	"layouts": {
 		"items": [
-			"Layout 1",
-			"Layout 2"
+			"Layout 1"
 		],
 		"subfolders": []
 	},

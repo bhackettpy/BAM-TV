@@ -2,52 +2,384 @@
 	"name": "Event sheet 1",
 	"events": [
 		{
-			"eventType": "block",
-			"conditions": [
+			"eventType": "variable",
+			"name": "annoyingWindowVisible",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "Pulls up annoying window",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 197401913102799
+		},
+		{
+			"eventType": "variable",
+			"name": "startUp",
+			"type": "boolean",
+			"initialValue": "true",
+			"comment": "Ensure the window doesn't pop up when the player starts the game",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 173585861020227
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Player Controls",
+			"description": "Player Controls",
+			"isActiveOnStart": true,
+			"children": [
 				{
-					"id": "on-key-pressed",
-					"objectClass": "Keyboard",
-					"sid": 713598732952987,
-					"parameters": {
-						"key": 37
-					}
+					"eventType": "comment",
+					"text": "When left key is pressed down, move left"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "key-is-down",
+							"objectClass": "Keyboard",
+							"sid": 491191399757655,
+							"parameters": {
+								"key": 37
+							}
+						},
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 219585870126201,
+							"parameters": {
+								"variable": "annoyingWindowVisible"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "set-mirrored",
+							"objectClass": "Player",
+							"sid": 665469680442595,
+							"parameters": {
+								"state": "mirrored"
+							}
+						},
+						{
+							"id": "simulate-control",
+							"objectClass": "Player",
+							"sid": 175580499756970,
+							"behaviorType": "Platform",
+							"parameters": {
+								"control": "left"
+							}
+						}
+					],
+					"sid": 878277190076927
+				},
+				{
+					"eventType": "comment",
+					"text": "When right key is pressed down, move right"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "key-is-down",
+							"objectClass": "Keyboard",
+							"sid": 255670034749434,
+							"parameters": {
+								"key": 39
+							}
+						},
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 320113580806003,
+							"parameters": {
+								"variable": "annoyingWindowVisible"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "set-mirrored",
+							"objectClass": "Player",
+							"sid": 473120754756734,
+							"parameters": {
+								"state": "not-mirrored"
+							}
+						},
+						{
+							"id": "simulate-control",
+							"objectClass": "Player",
+							"sid": 467683946069195,
+							"behaviorType": "Platform",
+							"parameters": {
+								"control": "right"
+							}
+						}
+					],
+					"sid": 446600555522105
+				},
+				{
+					"eventType": "comment",
+					"text": "When up key is pressed, jump up"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "key-is-down",
+							"objectClass": "Keyboard",
+							"sid": 793006541502716,
+							"parameters": {
+								"key": 38
+							}
+						},
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 776811866757564,
+							"parameters": {
+								"variable": "annoyingWindowVisible"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "simulate-control",
+							"objectClass": "Player",
+							"sid": 113140745963671,
+							"behaviorType": "Platform",
+							"parameters": {
+								"control": "jump"
+							}
+						}
+					],
+					"sid": 799074663089630
+				},
+				{
+					"eventType": "comment",
+					"text": "When backspace is pressed, remove popup window (probably temporary)"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "key-is-down",
+							"objectClass": "Keyboard",
+							"sid": 806135720981225,
+							"parameters": {
+								"key": 8
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 261355427495822,
+							"parameters": {
+								"variable": "startUp",
+								"value": "true"
+							}
+						},
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 923812615476195,
+							"parameters": {
+								"variable": "annoyingWindowVisible",
+								"value": "false"
+							}
+						},
+						{
+							"id": "set-layer-opacity",
+							"objectClass": "System",
+							"sid": 961953969575190,
+							"parameters": {
+								"layer": "1",
+								"opacity": "0"
+							}
+						}
+					],
+					"sid": 344712788854483
 				}
 			],
-			"actions": [
-				{
-					"id": "set-mirrored",
-					"objectClass": "Player",
-					"sid": 687960773053943,
-					"parameters": {
-						"state": "mirrored"
-					}
-				}
-			],
-			"sid": 830565625746451
+			"sid": 605792722094292
+		},
+		{
+			"eventType": "comment",
+			"text": "Camera event that follows the player movement along the Y axis, while fixed on an X axis"
 		},
 		{
 			"eventType": "block",
 			"conditions": [
 				{
-					"id": "on-key-pressed",
-					"objectClass": "Keyboard",
-					"sid": 868760791692868,
+					"id": "every-tick",
+					"objectClass": "System",
+					"sid": 916627758791547
+				}
+			],
+			"actions": [
+				{
+					"id": "set-position",
+					"objectClass": "Camera",
+					"sid": 231608566395690,
 					"parameters": {
-						"key": 39
+						"x": "448",
+						"y": "lerp(Camera.Y, Player.Y - 125, 0.005)"
+					}
+				},
+				{
+					"id": "set-position",
+					"objectClass": "Sprite",
+					"sid": 272364688786051,
+					"parameters": {
+						"x": "Camera.X",
+						"y": "Camera.Y"
+					}
+				}
+			],
+			"sid": 225749280194112
+		},
+		{
+			"eventType": "comment",
+			"text": "For fake wall events (a test -- will likely need to be a seperate sprite for the fake walls)"
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-overlapping-another-object",
+					"objectClass": "Player",
+					"sid": 832515614642283,
+					"parameters": {
+						"object": "TiledBackground"
 					}
 				}
 			],
 			"actions": [
 				{
-					"id": "set-mirrored",
-					"objectClass": "Player",
-					"sid": 795560768206502,
+					"id": "set-visible",
+					"objectClass": "lolGotEm",
+					"sid": 139609489133590,
 					"parameters": {
-						"state": "not-mirrored"
+						"visibility": "visible"
 					}
 				}
 			],
-			"sid": 713590955925405
+			"sid": 482093540131549
+		},
+		{
+			"eventType": "comment",
+			"text": "Player start up phase -- this ensures that the annoying pop up window doesn't show up when the player starts the game\nShould also work when the player escapes from the popup window"
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-overlapping-another-object",
+					"objectClass": "Player",
+					"sid": 922534191793060,
+					"parameters": {
+						"object": "Lava"
+					}
+				},
+				{
+					"id": "compare-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 122914511412447,
+					"parameters": {
+						"variable": "startUp"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 745802159183495,
+					"parameters": {
+						"variable": "annoyingWindowVisible",
+						"value": "false"
+					}
+				}
+			],
+			"sid": 703363072829864
+		},
+		{
+			"eventType": "comment",
+			"text": "Once player leaves the lava area, the popup window will start showing up when the player is back in the lava area again"
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "else",
+					"objectClass": "System",
+					"sid": 983761727029189
+				}
+			],
+			"actions": [
+				{
+					"id": "set-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 379246030197846,
+					"parameters": {
+						"variable": "startUp",
+						"value": "false"
+					}
+				}
+			],
+			"sid": 396599305389489
+		},
+		{
+			"eventType": "comment",
+			"text": "When the player lands back in lava area, the popup window should show up"
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-overlapping-another-object",
+					"objectClass": "Player",
+					"sid": 561976704841279,
+					"parameters": {
+						"object": "Lava"
+					}
+				},
+				{
+					"id": "compare-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 150541809920043,
+					"parameters": {
+						"variable": "startUp"
+					},
+					"isInverted": true
+				}
+			],
+			"actions": [
+				{
+					"id": "set-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 301688660966925,
+					"parameters": {
+						"variable": "annoyingWindowVisible",
+						"value": "true"
+					}
+				},
+				{
+					"id": "set-layer-opacity",
+					"objectClass": "System",
+					"sid": 285331106471090,
+					"parameters": {
+						"layer": "1",
+						"opacity": "100"
+					}
+				}
+			],
+			"sid": 809002515194711
 		}
 	],
 	"sid": 212594192488707
