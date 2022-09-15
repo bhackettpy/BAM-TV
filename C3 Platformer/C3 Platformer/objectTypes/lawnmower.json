@@ -9,6 +9,12 @@
 			"type": "string",
 			"desc": "",
 			"sid": 293581807972867
+		},
+		{
+			"name": "playingSound",
+			"type": "boolean",
+			"desc": "Will play sound of lawn mower when on screen",
+			"sid": 751208109745180
 		}
 	],
 	"behaviorTypes": [

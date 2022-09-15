@@ -3,10 +3,10 @@
 	"events": [
 		{
 			"eventType": "variable",
-			"name": "annoyingWindowVisible",
+			"name": "disableControls",
 			"type": "boolean",
 			"initialValue": "false",
-			"comment": "Pulls up annoying window",
+			"comment": "Disable controls (for lawn mowing and pop up memes)",
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 197401913102799
@@ -48,7 +48,7 @@
 							"objectClass": "System",
 							"sid": 219585870126201,
 							"parameters": {
-								"variable": "annoyingWindowVisible"
+								"variable": "disableControls"
 							},
 							"isInverted": true
 						}
@@ -94,7 +94,7 @@
 							"objectClass": "System",
 							"sid": 320113580806003,
 							"parameters": {
-								"variable": "annoyingWindowVisible"
+								"variable": "disableControls"
 							},
 							"isInverted": true
 						}
@@ -140,7 +140,7 @@
 							"objectClass": "System",
 							"sid": 776811866757564,
 							"parameters": {
-								"variable": "annoyingWindowVisible"
+								"variable": "disableControls"
 							},
 							"isInverted": true
 						}
@@ -189,7 +189,7 @@
 							"objectClass": "System",
 							"sid": 923812615476195,
 							"parameters": {
-								"variable": "annoyingWindowVisible",
+								"variable": "disableControls",
 								"value": "false"
 							}
 						},
@@ -209,6 +209,438 @@
 			"sid": 605792722094292
 		},
 		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Lawnmower Controls",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Lawnmower",
+							"sid": 756212816993335,
+							"parameters": {
+								"instance-variable": "action",
+								"comparison": 0,
+								"value": "\"right\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "simulate-control",
+							"objectClass": "Lawnmower",
+							"sid": 410429731861449,
+							"behaviorType": "Platform",
+							"parameters": {
+								"control": "right"
+							}
+						},
+						{
+							"id": "set-mirrored",
+							"objectClass": "Lawnmower",
+							"sid": 315792566732243,
+							"parameters": {
+								"state": "not-mirrored"
+							}
+						}
+					],
+					"sid": 920541379677030
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Lawnmower",
+							"sid": 102102293978553,
+							"parameters": {
+								"instance-variable": "action",
+								"comparison": 0,
+								"value": "\"left\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "simulate-control",
+							"objectClass": "Lawnmower",
+							"sid": 540673807480523,
+							"behaviorType": "Platform",
+							"parameters": {
+								"control": "left"
+							}
+						},
+						{
+							"id": "set-mirrored",
+							"objectClass": "Lawnmower",
+							"sid": 299162121987719,
+							"parameters": {
+								"state": "mirrored"
+							}
+						}
+					],
+					"sid": 958211832337510
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "Lawnmower",
+							"sid": 752330549546697,
+							"parameters": {
+								"object": "Edge"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 603322031477543,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Lawnmower",
+									"sid": 792476229439061,
+									"parameters": {
+										"instance-variable": "action",
+										"comparison": 0,
+										"value": "\"right\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-instvar-value",
+									"objectClass": "Lawnmower",
+									"sid": 233852022020099,
+									"parameters": {
+										"instance-variable": "action",
+										"value": "\"left\""
+									}
+								}
+							],
+							"sid": 364899077499799
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 115496656957473
+								}
+							],
+							"actions": [
+								{
+									"id": "set-instvar-value",
+									"objectClass": "Lawnmower",
+									"sid": 368164959654206,
+									"parameters": {
+										"instance-variable": "action",
+										"value": "\"right\""
+									}
+								}
+							],
+							"sid": 661909276522809
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-on-screen",
+							"objectClass": "Lawnmower",
+							"sid": 824598952249271
+						},
+						{
+							"id": "is-boolean-instance-variable-set",
+							"objectClass": "Lawnmower",
+							"sid": 665875075706169,
+							"parameters": {
+								"instance-variable": "playingSound"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "Lawnmower",
+							"sid": 358402994428492,
+							"parameters": {
+								"instance-variable": "playingSound",
+								"value": "true"
+							}
+						},
+						{
+							"id": "play-at-position",
+							"objectClass": "Audio",
+							"sid": 736269225080720,
+							"parameters": {
+								"audio-file": "lawn-mower-sound",
+								"loop": "looping",
+								"volume": "-5",
+								"x": "Lawnmower.X",
+								"y": "Lawnmower.Y",
+								"angle": "0",
+								"inner-angle": "360",
+								"outer-angle": "360",
+								"outer-gain": "0",
+								"tag-optional": "\"daMower\""
+							}
+						}
+					],
+					"sid": 718612344811019
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-on-screen",
+							"objectClass": "Lawnmower",
+							"sid": 620669416559692,
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "stop",
+							"objectClass": "Audio",
+							"sid": 754021357509931,
+							"parameters": {
+								"tag": "\"daMower\""
+							}
+						},
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "Lawnmower",
+							"sid": 390637401582582,
+							"parameters": {
+								"instance-variable": "playingSound",
+								"value": "false"
+							}
+						}
+					],
+					"sid": 158614246778551
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "Lawnmower",
+							"sid": 110069647825285,
+							"parameters": {
+								"object": "Player"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 482111502877127,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-x",
+									"objectClass": "Lawnmower",
+									"sid": 963270236814247,
+									"parameters": {
+										"comparison": 2,
+										"x-co-ordinate": "Player.x"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-max-speed",
+									"objectClass": "Player",
+									"sid": 493736467733248,
+									"behaviorType": "Platform",
+									"parameters": {
+										"max-speed": "1000"
+									}
+								},
+								{
+									"id": "set-vector-x",
+									"objectClass": "Player",
+									"sid": 648246948506255,
+									"behaviorType": "Platform",
+									"parameters": {
+										"vector-x": "Self.X + 750"
+									}
+								},
+								{
+									"id": "simulate-control",
+									"objectClass": "Player",
+									"sid": 497787774366097,
+									"behaviorType": "Platform",
+									"parameters": {
+										"control": "jump"
+									}
+								},
+								{
+									"id": "set-opacity",
+									"objectClass": "Player",
+									"sid": 835625413988969,
+									"parameters": {
+										"opacity": "50"
+									}
+								},
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 961585883854626,
+									"parameters": {
+										"variable": "disableControls",
+										"value": "true"
+									}
+								},
+								{
+									"id": "wait",
+									"objectClass": "System",
+									"sid": 483612308542952,
+									"parameters": {
+										"seconds": "3"
+									}
+								},
+								{
+									"id": "set-max-speed",
+									"objectClass": "Player",
+									"sid": 173130676743974,
+									"behaviorType": "Platform",
+									"parameters": {
+										"max-speed": "330"
+									}
+								},
+								{
+									"id": "set-opacity",
+									"objectClass": "Player",
+									"sid": 978314809070557,
+									"parameters": {
+										"opacity": "100"
+									}
+								},
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 799594207772556,
+									"parameters": {
+										"variable": "disableControls",
+										"value": "false"
+									}
+								}
+							],
+							"sid": 530523362739737
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-x",
+									"objectClass": "Lawnmower",
+									"sid": 174180454665902,
+									"parameters": {
+										"comparison": 4,
+										"x-co-ordinate": "Player.X"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-max-speed",
+									"objectClass": "Player",
+									"sid": 620430646445683,
+									"behaviorType": "Platform",
+									"parameters": {
+										"max-speed": "1000"
+									}
+								},
+								{
+									"id": "set-vector-x",
+									"objectClass": "Player",
+									"sid": 165345538547667,
+									"behaviorType": "Platform",
+									"parameters": {
+										"vector-x": "Self.X - 7500"
+									}
+								},
+								{
+									"id": "simulate-control",
+									"objectClass": "Player",
+									"sid": 169901037521747,
+									"behaviorType": "Platform",
+									"parameters": {
+										"control": "jump"
+									}
+								},
+								{
+									"id": "set-opacity",
+									"objectClass": "Player",
+									"sid": 136389032592284,
+									"parameters": {
+										"opacity": "50"
+									}
+								},
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 607214565112847,
+									"parameters": {
+										"variable": "disableControls",
+										"value": "true"
+									}
+								},
+								{
+									"id": "wait",
+									"objectClass": "System",
+									"sid": 607110336801356,
+									"parameters": {
+										"seconds": "3"
+									}
+								},
+								{
+									"id": "set-max-speed",
+									"objectClass": "Player",
+									"sid": 944689239437040,
+									"behaviorType": "Platform",
+									"parameters": {
+										"max-speed": "330"
+									}
+								},
+								{
+									"id": "set-opacity",
+									"objectClass": "Player",
+									"sid": 590925366590223,
+									"parameters": {
+										"opacity": "100"
+									}
+								},
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 721224580347335,
+									"parameters": {
+										"variable": "disableControls",
+										"value": "false"
+									}
+								}
+							],
+							"sid": 682189037675709
+						}
+					]
+				}
+			],
+			"sid": 661146059474078
+		},
+		{
 			"eventType": "comment",
 			"text": "Camera event that follows the player movement along the Y axis, while fixed on an X axis"
 		},
@@ -225,10 +657,10 @@
 				{
 					"id": "set-position",
 					"objectClass": "Camera",
-					"sid": 231608566395690,
+					"sid": 825350774235109,
 					"parameters": {
 						"x": "448",
-						"y": "lerp(Camera.Y, Player.Y - 125, 0.005)"
+						"y": "lerp(Camera.Y, Player.Y - 125, 0.01)"
 					}
 				},
 				{
@@ -242,6 +674,27 @@
 				}
 			],
 			"sid": 225749280194112
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 769129563781391
+				}
+			],
+			"actions": [
+				{
+					"id": "set-listener-object",
+					"objectClass": "Audio",
+					"sid": 157939223720379,
+					"parameters": {
+						"object": "Camera"
+					}
+				}
+			],
+			"sid": 195828157441330
 		},
 		{
 			"eventType": "comment",
@@ -301,7 +754,7 @@
 					"objectClass": "System",
 					"sid": 745802159183495,
 					"parameters": {
-						"variable": "annoyingWindowVisible",
+						"variable": "disableControls",
 						"value": "false"
 					}
 				}
@@ -365,7 +818,7 @@
 					"objectClass": "System",
 					"sid": 301688660966925,
 					"parameters": {
-						"variable": "annoyingWindowVisible",
+						"variable": "disableControls",
 						"value": "true"
 					}
 				},
@@ -380,195 +833,6 @@
 				}
 			],
 			"sid": 809002515194711
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-collision-with-another-object",
-					"objectClass": "Player",
-					"sid": 800644291855808,
-					"parameters": {
-						"object": "Lawnmower"
-					}
-				}
-			],
-			"actions": [
-				{
-					"id": "set-collisions-enabled",
-					"objectClass": "Player",
-					"sid": 129938108984858,
-					"parameters": {
-						"collisions": "disabled"
-					}
-				}
-			],
-			"sid": 338416538925675
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "compare-instance-variable",
-					"objectClass": "Lawnmower",
-					"sid": 933070301489733,
-					"parameters": {
-						"instance-variable": "action",
-						"comparison": 0,
-						"value": "\"right\""
-					}
-				}
-			],
-			"actions": [
-				{
-					"id": "simulate-control",
-					"objectClass": "Lawnmower",
-					"sid": 472738287556827,
-					"behaviorType": "Platform",
-					"parameters": {
-						"control": "right"
-					}
-				},
-				{
-					"id": "set-mirrored",
-					"objectClass": "Lawnmower",
-					"sid": 152586446862809,
-					"parameters": {
-						"state": "not-mirrored"
-					}
-				}
-			],
-			"sid": 144917123735508
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "compare-instance-variable",
-					"objectClass": "Lawnmower",
-					"sid": 417437830928513,
-					"parameters": {
-						"instance-variable": "action",
-						"comparison": 0,
-						"value": "\"left\""
-					}
-				}
-			],
-			"actions": [
-				{
-					"id": "simulate-control",
-					"objectClass": "Lawnmower",
-					"sid": 840003003915839,
-					"behaviorType": "Platform",
-					"parameters": {
-						"control": "left"
-					}
-				},
-				{
-					"id": "set-mirrored",
-					"objectClass": "Lawnmower",
-					"sid": 150345302514739,
-					"parameters": {
-						"state": "mirrored"
-					}
-				}
-			],
-			"sid": 733781938639575
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-collision-with-another-object",
-					"objectClass": "Lawnmower",
-					"sid": 180126355705539,
-					"parameters": {
-						"object": "Edge"
-					}
-				}
-			],
-			"actions": [],
-			"sid": 875768409072623,
-			"children": [
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "compare-instance-variable",
-							"objectClass": "Lawnmower",
-							"sid": 222994118016009,
-							"parameters": {
-								"instance-variable": "action",
-								"comparison": 0,
-								"value": "\"right\""
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "set-instvar-value",
-							"objectClass": "Lawnmower",
-							"sid": 751681367754599,
-							"parameters": {
-								"instance-variable": "action",
-								"value": "\"left\""
-							}
-						}
-					],
-					"sid": 617933340918476
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "else",
-							"objectClass": "System",
-							"sid": 542459876342839
-						}
-					],
-					"actions": [
-						{
-							"id": "set-instvar-value",
-							"objectClass": "Lawnmower",
-							"sid": 438897648598904,
-							"parameters": {
-								"instance-variable": "action",
-								"value": "\"right\""
-							}
-						}
-					],
-					"sid": 429714690255382
-				}
-			]
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "is-on-screen",
-					"objectClass": "Lawnmower",
-					"sid": 311700363093958
-				},
-				{
-					"id": "trigger-once-while-true",
-					"objectClass": "System",
-					"sid": 951221805001129
-				}
-			],
-			"actions": [
-				{
-					"id": "play",
-					"objectClass": "Audio",
-					"sid": 342735996534606,
-					"parameters": {
-						"audio-file": "lawn-mower-sound",
-						"loop": "looping",
-						"volume": "-10",
-						"tag-optional": "\"\""
-					}
-				}
-			],
-			"sid": 138915372415949
 		}
 	],
 	"sid": 212594192488707
