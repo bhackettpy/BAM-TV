@@ -186,31 +186,8 @@
 					],
 					"actions": [
 						{
-							"id": "set-boolean-eventvar",
-							"objectClass": "System",
-							"sid": 261355427495822,
-							"parameters": {
-								"variable": "startUp",
-								"value": "true"
-							}
-						},
-						{
-							"id": "set-boolean-eventvar",
-							"objectClass": "System",
-							"sid": 923812615476195,
-							"parameters": {
-								"variable": "disableControls",
-								"value": "false"
-							}
-						},
-						{
-							"id": "set-layer-opacity",
-							"objectClass": "System",
-							"sid": 961953969575190,
-							"parameters": {
-								"layer": "1",
-								"opacity": "0"
-							}
+							"callFunction": "restoreControl",
+							"sid": 207707430651597
 						}
 					],
 					"sid": 344712788854483
@@ -688,12 +665,12 @@
 							}
 						},
 						{
-							"id": "set-layer-opacity",
+							"id": "set-layer-visible",
 							"objectClass": "System",
-							"sid": 565005627952621,
+							"sid": 103952457057429,
 							"parameters": {
 								"layer": "1",
-								"opacity": "100"
+								"visibility": "visible"
 							}
 						}
 					],
@@ -737,10 +714,19 @@
 				{
 					"id": "set-position",
 					"objectClass": "Yes",
-					"sid": 525878004938382,
+					"sid": 372583614941423,
 					"parameters": {
-						"x": "Camera.X",
-						"y": "Camera.Y - 200"
+						"x": "Camera.X - 90",
+						"y": "Camera.Y + 80"
+					}
+				},
+				{
+					"id": "set-position",
+					"objectClass": "No",
+					"sid": 290066567961755,
+					"parameters": {
+						"x": "Camera.X - 40",
+						"y": "Camera.Y + 200"
 					}
 				}
 			],
@@ -762,6 +748,15 @@
 					"sid": 157939223720379,
 					"parameters": {
 						"object": "Camera"
+					}
+				},
+				{
+					"id": "set-layer-visible",
+					"objectClass": "System",
+					"sid": 990183374138793,
+					"parameters": {
+						"layer": "1",
+						"visibility": "invisible"
 					}
 				}
 			],
@@ -831,6 +826,10 @@
 			"sid": 627299091440928
 		},
 		{
+			"eventType": "comment",
+			"text": "Restores control for the player"
+		},
+		{
 			"functionName": "restoreControl",
 			"functionDescription": "",
 			"functionCategory": "",
@@ -840,8 +839,108 @@
 			"functionParameters": [],
 			"eventType": "function-block",
 			"conditions": [],
-			"actions": [],
+			"actions": [
+				{
+					"id": "set-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 222132647980628,
+					"parameters": {
+						"variable": "startUp",
+						"value": "true"
+					}
+				},
+				{
+					"id": "set-opacity",
+					"objectClass": "Player",
+					"sid": 441752918290738,
+					"parameters": {
+						"opacity": "100"
+					}
+				},
+				{
+					"id": "set-max-speed",
+					"objectClass": "Player",
+					"sid": 371135484975688,
+					"behaviorType": "Platform",
+					"parameters": {
+						"max-speed": "330"
+					}
+				},
+				{
+					"id": "set-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 753489795222164,
+					"parameters": {
+						"variable": "disableControls",
+						"value": "false"
+					}
+				},
+				{
+					"id": "set-layer-visible",
+					"objectClass": "System",
+					"sid": 943055032233224,
+					"parameters": {
+						"layer": "1",
+						"visibility": "invisible"
+					}
+				}
+			],
 			"sid": 609523507575662
+		},
+		{
+			"eventType": "comment",
+			"text": "Continues where you are"
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-clicked",
+					"objectClass": "Yes",
+					"sid": 615284193486540
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "restoreControl",
+					"sid": 284632458147532
+				}
+			],
+			"sid": 867121337601264
+		},
+		{
+			"eventType": "comment",
+			"text": "Restarts the whole game"
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-clicked",
+					"objectClass": "No",
+					"sid": 637323536699292
+				}
+			],
+			"actions": [
+				{
+					"id": "set-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 903946481608266,
+					"parameters": {
+						"variable": "startUp",
+						"value": "true"
+					}
+				},
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 680358715883408,
+					"parameters": {
+						"layout": "Layout 1"
+					}
+				}
+			],
+			"sid": 828204551945952
 		}
 	],
 	"sid": 212594192488707
