@@ -47,6 +47,14 @@
 			"bundled": false
 		},
 		{
+			"type": "plugin",
+			"id": "Button",
+			"name": "Button",
+			"author": "Scirra",
+			"version": "r308.2",
+			"bundled": false
+		},
+		{
 			"type": "behavior",
 			"id": "Platform",
 			"name": "Platform",
@@ -85,7 +93,9 @@
 			"Text2",
 			"Lawnmower",
 			"Edge",
-			"Audio"
+			"Audio",
+			"Yes",
+			"No"
 		],
 		"subfolders": []
 	},

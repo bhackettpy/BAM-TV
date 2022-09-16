@@ -22,6 +22,16 @@
 			"sid": 173585861020227
 		},
 		{
+			"eventType": "variable",
+			"name": "countDownTime",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 813845021881713
+		},
+		{
 			"eventType": "group",
 			"disabled": false,
 			"title": "Player Controls",
@@ -502,40 +512,6 @@
 										"variable": "disableControls",
 										"value": "true"
 									}
-								},
-								{
-									"id": "wait",
-									"objectClass": "System",
-									"sid": 483612308542952,
-									"parameters": {
-										"seconds": "3"
-									}
-								},
-								{
-									"id": "set-max-speed",
-									"objectClass": "Player",
-									"sid": 173130676743974,
-									"behaviorType": "Platform",
-									"parameters": {
-										"max-speed": "330"
-									}
-								},
-								{
-									"id": "set-opacity",
-									"objectClass": "Player",
-									"sid": 978314809070557,
-									"parameters": {
-										"opacity": "100"
-									}
-								},
-								{
-									"id": "set-boolean-eventvar",
-									"objectClass": "System",
-									"sid": 799594207772556,
-									"parameters": {
-										"variable": "disableControls",
-										"value": "false"
-									}
 								}
 							],
 							"sid": 530523362739737
@@ -597,40 +573,6 @@
 										"variable": "disableControls",
 										"value": "true"
 									}
-								},
-								{
-									"id": "wait",
-									"objectClass": "System",
-									"sid": 607110336801356,
-									"parameters": {
-										"seconds": "3"
-									}
-								},
-								{
-									"id": "set-max-speed",
-									"objectClass": "Player",
-									"sid": 944689239437040,
-									"behaviorType": "Platform",
-									"parameters": {
-										"max-speed": "330"
-									}
-								},
-								{
-									"id": "set-opacity",
-									"objectClass": "Player",
-									"sid": 590925366590223,
-									"parameters": {
-										"opacity": "100"
-									}
-								},
-								{
-									"id": "set-boolean-eventvar",
-									"objectClass": "System",
-									"sid": 721224580347335,
-									"parameters": {
-										"variable": "disableControls",
-										"value": "false"
-									}
 								}
 							],
 							"sid": 682189037675709
@@ -639,6 +581,126 @@
 				}
 			],
 			"sid": 661146059474078
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Lava Mechanic",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "comment",
+					"text": "Player start up phase -- this ensures that the annoying pop up window doesn't show up when the player starts the game\nShould also work when the player escapes from the popup window"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-overlapping-another-object",
+							"objectClass": "Player",
+							"sid": 379533994704179,
+							"parameters": {
+								"object": "Lava"
+							}
+						},
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 478623943235828,
+							"parameters": {
+								"variable": "startUp"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 587279814778812,
+							"parameters": {
+								"variable": "disableControls",
+								"value": "false"
+							}
+						}
+					],
+					"sid": 539514306738769
+				},
+				{
+					"eventType": "comment",
+					"text": "Once player leaves the lava area, the popup window will start showing up when the player is back in the lava area again"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 747625738875885
+						}
+					],
+					"actions": [
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 231825360919915,
+							"parameters": {
+								"variable": "startUp",
+								"value": "false"
+							}
+						}
+					],
+					"sid": 963243157815846
+				},
+				{
+					"eventType": "comment",
+					"text": "When the player lands back in lava area, the popup window should show up"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-overlapping-another-object",
+							"objectClass": "Player",
+							"sid": 163999804411890,
+							"parameters": {
+								"object": "Lava"
+							}
+						},
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 836728073706896,
+							"parameters": {
+								"variable": "startUp"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 319469448071285,
+							"parameters": {
+								"variable": "disableControls",
+								"value": "true"
+							}
+						},
+						{
+							"id": "set-layer-opacity",
+							"objectClass": "System",
+							"sid": 565005627952621,
+							"parameters": {
+								"layer": "1",
+								"opacity": "100"
+							}
+						}
+					],
+					"sid": 942125035035747
+				}
+			],
+			"sid": 918801499325970
 		},
 		{
 			"eventType": "comment",
@@ -670,6 +732,15 @@
 					"parameters": {
 						"x": "Camera.X",
 						"y": "Camera.Y"
+					}
+				},
+				{
+					"id": "set-position",
+					"objectClass": "Yes",
+					"sid": 525878004938382,
+					"parameters": {
+						"x": "Camera.X",
+						"y": "Camera.Y - 200"
 					}
 				}
 			],
@@ -725,114 +796,52 @@
 			"sid": 482093540131549
 		},
 		{
-			"eventType": "comment",
-			"text": "Player start up phase -- this ensures that the annoying pop up window doesn't show up when the player starts the game\nShould also work when the player escapes from the popup window"
-		},
-		{
 			"eventType": "block",
 			"conditions": [
 				{
-					"id": "is-overlapping-another-object",
-					"objectClass": "Player",
-					"sid": 922534191793060,
+					"id": "every-x-seconds",
+					"objectClass": "System",
+					"sid": 365088376977387,
 					"parameters": {
-						"object": "Lava"
+						"interval-seconds": "1.0"
 					}
 				},
 				{
-					"id": "compare-boolean-eventvar",
+					"id": "compare-eventvar",
 					"objectClass": "System",
-					"sid": 122914511412447,
+					"sid": 287762632068549,
 					"parameters": {
-						"variable": "startUp"
+						"variable": "countDownTime",
+						"comparison": 4,
+						"value": "0"
 					}
 				}
 			],
 			"actions": [
 				{
-					"id": "set-boolean-eventvar",
+					"id": "subtract-from-eventvar",
 					"objectClass": "System",
-					"sid": 745802159183495,
+					"sid": 391724856822803,
 					"parameters": {
-						"variable": "disableControls",
-						"value": "false"
+						"variable": "countDownTime",
+						"value": "1"
 					}
 				}
 			],
-			"sid": 703363072829864
+			"sid": 627299091440928
 		},
 		{
-			"eventType": "comment",
-			"text": "Once player leaves the lava area, the popup window will start showing up when the player is back in the lava area again"
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "else",
-					"objectClass": "System",
-					"sid": 983761727029189
-				}
-			],
-			"actions": [
-				{
-					"id": "set-boolean-eventvar",
-					"objectClass": "System",
-					"sid": 379246030197846,
-					"parameters": {
-						"variable": "startUp",
-						"value": "false"
-					}
-				}
-			],
-			"sid": 396599305389489
-		},
-		{
-			"eventType": "comment",
-			"text": "When the player lands back in lava area, the popup window should show up"
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "is-overlapping-another-object",
-					"objectClass": "Player",
-					"sid": 561976704841279,
-					"parameters": {
-						"object": "Lava"
-					}
-				},
-				{
-					"id": "compare-boolean-eventvar",
-					"objectClass": "System",
-					"sid": 150541809920043,
-					"parameters": {
-						"variable": "startUp"
-					},
-					"isInverted": true
-				}
-			],
-			"actions": [
-				{
-					"id": "set-boolean-eventvar",
-					"objectClass": "System",
-					"sid": 301688660966925,
-					"parameters": {
-						"variable": "disableControls",
-						"value": "true"
-					}
-				},
-				{
-					"id": "set-layer-opacity",
-					"objectClass": "System",
-					"sid": 285331106471090,
-					"parameters": {
-						"layer": "1",
-						"opacity": "100"
-					}
-				}
-			],
-			"sid": 809002515194711
+			"functionName": "restoreControl",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 609523507575662
 		}
 	],
 	"sid": 212594192488707
