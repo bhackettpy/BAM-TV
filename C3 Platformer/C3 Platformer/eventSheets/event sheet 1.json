@@ -489,6 +489,15 @@
 										"variable": "disableControls",
 										"value": "true"
 									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 325626320840620,
+									"parameters": {
+										"variable": "countDownTime",
+										"value": "3"
+									}
 								}
 							],
 							"sid": 530523362739737
@@ -549,6 +558,15 @@
 									"parameters": {
 										"variable": "disableControls",
 										"value": "true"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 179352884911490,
+									"parameters": {
+										"variable": "countDownTime",
+										"value": "3"
 									}
 								}
 							],
