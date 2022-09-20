@@ -1,7 +1,7 @@
 {
-	"name": "No",
+	"name": "btn_restart",
 	"plugin-id": "Button",
-	"sid": 662201316146531,
+	"sid": 328625654719984,
 	"isGlobal": false,
 	"instanceVariables": [],
 	"behaviorTypes": []

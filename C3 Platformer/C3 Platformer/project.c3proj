@@ -82,20 +82,17 @@
 	"uniqueId": "8g68b5j0jib",
 	"objectTypes": {
 		"items": [
-			"Player",
-			"TiledBackground",
-			"Keyboard",
-			"Camera",
-			"Sprite",
-			"lolGotEm",
-			"Lava",
-			"Text",
-			"Text2",
-			"Lawnmower",
-			"Edge",
-			"Audio",
-			"Yes",
-			"No"
+			"spr_player",
+			"spr_walls",
+			"sys_keyboard",
+			"spr_camera",
+			"spr_lava",
+			"text_fake",
+			"spr_lawnmower",
+			"spr_edge",
+			"sys_audio",
+			"btn_restart",
+			"text_gameOver"
 		],
 		"subfolders": []
 	},

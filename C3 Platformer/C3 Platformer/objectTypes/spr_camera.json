@@ -1,10 +1,16 @@
 {
-	"name": "Edge",
+	"name": "spr_camera",
 	"plugin-id": "Sprite",
-	"sid": 753637169993054,
+	"sid": 952754433571020,
 	"isGlobal": false,
 	"instanceVariables": [],
-	"behaviorTypes": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "scrollto",
+			"name": "ScrollTo",
+			"sid": 273569008891121
+		}
+	],
 	"effectTypes": [],
 	"animations": {
 		"items": [
@@ -18,12 +24,12 @@
 						"originalSource": "",
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
-						"imageSpriteId": 5258886,
+						"imageSpriteId": 3201890,
 						"useCollisionPoly": true,
 						"duration": 1
 					}
 				],
-				"sid": 815501635186237,
+				"sid": 235982764700364,
 				"name": "Animation 1",
 				"isLooping": false,
 				"isPingPong": false,

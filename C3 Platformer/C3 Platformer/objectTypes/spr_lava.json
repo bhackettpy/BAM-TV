@@ -1,16 +1,10 @@
 {
-	"name": "Camera",
+	"name": "spr_lava",
 	"plugin-id": "Sprite",
-	"sid": 952754433571020,
+	"sid": 830342426316056,
 	"isGlobal": false,
 	"instanceVariables": [],
-	"behaviorTypes": [
-		{
-			"behaviorId": "scrollto",
-			"name": "ScrollTo",
-			"sid": 273569008891121
-		}
-	],
+	"behaviorTypes": [],
 	"effectTypes": [],
 	"animations": {
 		"items": [
@@ -24,12 +18,12 @@
 						"originalSource": "",
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
-						"imageSpriteId": 3201890,
+						"imageSpriteId": 478458,
 						"useCollisionPoly": true,
 						"duration": 1
 					}
 				],
-				"sid": 235982764700364,
+				"sid": 450615231157265,
 				"name": "Animation 1",
 				"isLooping": false,
 				"isPingPong": false,

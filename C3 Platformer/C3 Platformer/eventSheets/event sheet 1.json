@@ -47,7 +47,7 @@
 					"conditions": [
 						{
 							"id": "key-is-down",
-							"objectClass": "Keyboard",
+							"objectClass": "sys_keyboard",
 							"sid": 491191399757655,
 							"parameters": {
 								"key": 37
@@ -66,7 +66,7 @@
 					"actions": [
 						{
 							"id": "set-mirrored",
-							"objectClass": "Player",
+							"objectClass": "spr_player",
 							"sid": 665469680442595,
 							"parameters": {
 								"state": "mirrored"
@@ -74,7 +74,7 @@
 						},
 						{
 							"id": "simulate-control",
-							"objectClass": "Player",
+							"objectClass": "spr_player",
 							"sid": 175580499756970,
 							"behaviorType": "Platform",
 							"parameters": {
@@ -93,7 +93,7 @@
 					"conditions": [
 						{
 							"id": "key-is-down",
-							"objectClass": "Keyboard",
+							"objectClass": "sys_keyboard",
 							"sid": 255670034749434,
 							"parameters": {
 								"key": 39
@@ -112,7 +112,7 @@
 					"actions": [
 						{
 							"id": "set-mirrored",
-							"objectClass": "Player",
+							"objectClass": "spr_player",
 							"sid": 473120754756734,
 							"parameters": {
 								"state": "not-mirrored"
@@ -120,7 +120,7 @@
 						},
 						{
 							"id": "simulate-control",
-							"objectClass": "Player",
+							"objectClass": "spr_player",
 							"sid": 467683946069195,
 							"behaviorType": "Platform",
 							"parameters": {
@@ -139,7 +139,7 @@
 					"conditions": [
 						{
 							"id": "key-is-down",
-							"objectClass": "Keyboard",
+							"objectClass": "sys_keyboard",
 							"sid": 793006541502716,
 							"parameters": {
 								"key": 38
@@ -158,7 +158,7 @@
 					"actions": [
 						{
 							"id": "simulate-control",
-							"objectClass": "Player",
+							"objectClass": "spr_player",
 							"sid": 113140745963671,
 							"behaviorType": "Platform",
 							"parameters": {
@@ -170,14 +170,14 @@
 				},
 				{
 					"eventType": "comment",
-					"text": "When backspace is pressed, remove popup window (probably temporary)"
+					"text": "When backspace is pressed, remove popup window\n(For debugging purposes)"
 				},
 				{
 					"eventType": "block",
 					"conditions": [
 						{
 							"id": "key-is-down",
-							"objectClass": "Keyboard",
+							"objectClass": "sys_keyboard",
 							"sid": 806135720981225,
 							"parameters": {
 								"key": 8
@@ -207,7 +207,7 @@
 					"conditions": [
 						{
 							"id": "compare-instance-variable",
-							"objectClass": "Lawnmower",
+							"objectClass": "spr_lawnmower",
 							"sid": 756212816993335,
 							"parameters": {
 								"instance-variable": "action",
@@ -219,7 +219,7 @@
 					"actions": [
 						{
 							"id": "simulate-control",
-							"objectClass": "Lawnmower",
+							"objectClass": "spr_lawnmower",
 							"sid": 410429731861449,
 							"behaviorType": "Platform",
 							"parameters": {
@@ -228,7 +228,7 @@
 						},
 						{
 							"id": "set-mirrored",
-							"objectClass": "Lawnmower",
+							"objectClass": "spr_lawnmower",
 							"sid": 315792566732243,
 							"parameters": {
 								"state": "not-mirrored"
@@ -242,7 +242,7 @@
 					"conditions": [
 						{
 							"id": "compare-instance-variable",
-							"objectClass": "Lawnmower",
+							"objectClass": "spr_lawnmower",
 							"sid": 102102293978553,
 							"parameters": {
 								"instance-variable": "action",
@@ -254,7 +254,7 @@
 					"actions": [
 						{
 							"id": "simulate-control",
-							"objectClass": "Lawnmower",
+							"objectClass": "spr_lawnmower",
 							"sid": 540673807480523,
 							"behaviorType": "Platform",
 							"parameters": {
@@ -263,7 +263,7 @@
 						},
 						{
 							"id": "set-mirrored",
-							"objectClass": "Lawnmower",
+							"objectClass": "spr_lawnmower",
 							"sid": 299162121987719,
 							"parameters": {
 								"state": "mirrored"
@@ -277,10 +277,10 @@
 					"conditions": [
 						{
 							"id": "on-collision-with-another-object",
-							"objectClass": "Lawnmower",
+							"objectClass": "spr_lawnmower",
 							"sid": 752330549546697,
 							"parameters": {
-								"object": "Edge"
+								"object": "spr_edge"
 							}
 						}
 					],
@@ -292,7 +292,7 @@
 							"conditions": [
 								{
 									"id": "compare-instance-variable",
-									"objectClass": "Lawnmower",
+									"objectClass": "spr_lawnmower",
 									"sid": 792476229439061,
 									"parameters": {
 										"instance-variable": "action",
@@ -304,7 +304,7 @@
 							"actions": [
 								{
 									"id": "set-instvar-value",
-									"objectClass": "Lawnmower",
+									"objectClass": "spr_lawnmower",
 									"sid": 233852022020099,
 									"parameters": {
 										"instance-variable": "action",
@@ -326,7 +326,7 @@
 							"actions": [
 								{
 									"id": "set-instvar-value",
-									"objectClass": "Lawnmower",
+									"objectClass": "spr_lawnmower",
 									"sid": 368164959654206,
 									"parameters": {
 										"instance-variable": "action",
@@ -343,12 +343,12 @@
 					"conditions": [
 						{
 							"id": "is-on-screen",
-							"objectClass": "Lawnmower",
+							"objectClass": "spr_lawnmower",
 							"sid": 824598952249271
 						},
 						{
 							"id": "is-boolean-instance-variable-set",
-							"objectClass": "Lawnmower",
+							"objectClass": "spr_lawnmower",
 							"sid": 665875075706169,
 							"parameters": {
 								"instance-variable": "playingSound"
@@ -359,7 +359,7 @@
 					"actions": [
 						{
 							"id": "set-boolean-instvar",
-							"objectClass": "Lawnmower",
+							"objectClass": "spr_lawnmower",
 							"sid": 358402994428492,
 							"parameters": {
 								"instance-variable": "playingSound",
@@ -368,14 +368,14 @@
 						},
 						{
 							"id": "play-at-position",
-							"objectClass": "Audio",
+							"objectClass": "sys_audio",
 							"sid": 736269225080720,
 							"parameters": {
 								"audio-file": "lawn-mower-sound",
 								"loop": "looping",
 								"volume": "-5",
-								"x": "Lawnmower.X",
-								"y": "Lawnmower.Y",
+								"x": "spr_lawnmower.X",
+								"y": "spr_lawnmower.Y",
 								"angle": "0",
 								"inner-angle": "360",
 								"outer-angle": "360",
@@ -391,7 +391,7 @@
 					"conditions": [
 						{
 							"id": "is-on-screen",
-							"objectClass": "Lawnmower",
+							"objectClass": "spr_lawnmower",
 							"sid": 620669416559692,
 							"isInverted": true
 						}
@@ -399,7 +399,7 @@
 					"actions": [
 						{
 							"id": "stop",
-							"objectClass": "Audio",
+							"objectClass": "sys_audio",
 							"sid": 754021357509931,
 							"parameters": {
 								"tag": "\"daMower\""
@@ -407,7 +407,7 @@
 						},
 						{
 							"id": "set-boolean-instvar",
-							"objectClass": "Lawnmower",
+							"objectClass": "spr_lawnmower",
 							"sid": 390637401582582,
 							"parameters": {
 								"instance-variable": "playingSound",
@@ -422,10 +422,10 @@
 					"conditions": [
 						{
 							"id": "on-collision-with-another-object",
-							"objectClass": "Lawnmower",
+							"objectClass": "spr_lawnmower",
 							"sid": 110069647825285,
 							"parameters": {
-								"object": "Player"
+								"object": "spr_player"
 							}
 						}
 					],
@@ -437,18 +437,18 @@
 							"conditions": [
 								{
 									"id": "compare-x",
-									"objectClass": "Lawnmower",
+									"objectClass": "spr_lawnmower",
 									"sid": 963270236814247,
 									"parameters": {
 										"comparison": 2,
-										"x-co-ordinate": "Player.x"
+										"x-co-ordinate": "spr_player.x"
 									}
 								}
 							],
 							"actions": [
 								{
 									"id": "set-max-speed",
-									"objectClass": "Player",
+									"objectClass": "spr_player",
 									"sid": 493736467733248,
 									"behaviorType": "Platform",
 									"parameters": {
@@ -457,7 +457,7 @@
 								},
 								{
 									"id": "set-vector-x",
-									"objectClass": "Player",
+									"objectClass": "spr_player",
 									"sid": 648246948506255,
 									"behaviorType": "Platform",
 									"parameters": {
@@ -466,7 +466,7 @@
 								},
 								{
 									"id": "simulate-control",
-									"objectClass": "Player",
+									"objectClass": "spr_player",
 									"sid": 497787774366097,
 									"behaviorType": "Platform",
 									"parameters": {
@@ -475,7 +475,7 @@
 								},
 								{
 									"id": "set-opacity",
-									"objectClass": "Player",
+									"objectClass": "spr_player",
 									"sid": 835625413988969,
 									"parameters": {
 										"opacity": "50"
@@ -507,18 +507,18 @@
 							"conditions": [
 								{
 									"id": "compare-x",
-									"objectClass": "Lawnmower",
+									"objectClass": "spr_lawnmower",
 									"sid": 174180454665902,
 									"parameters": {
 										"comparison": 4,
-										"x-co-ordinate": "Player.X"
+										"x-co-ordinate": "spr_player.X"
 									}
 								}
 							],
 							"actions": [
 								{
 									"id": "set-max-speed",
-									"objectClass": "Player",
+									"objectClass": "spr_player",
 									"sid": 620430646445683,
 									"behaviorType": "Platform",
 									"parameters": {
@@ -527,7 +527,7 @@
 								},
 								{
 									"id": "set-vector-x",
-									"objectClass": "Player",
+									"objectClass": "spr_player",
 									"sid": 165345538547667,
 									"behaviorType": "Platform",
 									"parameters": {
@@ -536,7 +536,7 @@
 								},
 								{
 									"id": "simulate-control",
-									"objectClass": "Player",
+									"objectClass": "spr_player",
 									"sid": 169901037521747,
 									"behaviorType": "Platform",
 									"parameters": {
@@ -545,7 +545,7 @@
 								},
 								{
 									"id": "set-opacity",
-									"objectClass": "Player",
+									"objectClass": "spr_player",
 									"sid": 136389032592284,
 									"parameters": {
 										"opacity": "50"
@@ -593,10 +593,10 @@
 					"conditions": [
 						{
 							"id": "is-overlapping-another-object",
-							"objectClass": "Player",
+							"objectClass": "spr_player",
 							"sid": 379533994704179,
 							"parameters": {
-								"object": "Lava"
+								"object": "spr_lava"
 							}
 						},
 						{
@@ -656,10 +656,10 @@
 					"conditions": [
 						{
 							"id": "is-overlapping-another-object",
-							"objectClass": "Player",
+							"objectClass": "spr_player",
 							"sid": 163999804411890,
 							"parameters": {
-								"object": "Lava"
+								"object": "spr_lava"
 							}
 						},
 						{
@@ -713,38 +713,29 @@
 			"actions": [
 				{
 					"id": "set-position",
-					"objectClass": "Camera",
+					"objectClass": "spr_camera",
 					"sid": 825350774235109,
 					"parameters": {
 						"x": "448",
-						"y": "lerp(Camera.Y, Player.Y - 125, 0.01)"
+						"y": "lerp(spr_camera.Y, spr_player.Y - 125, 0.01)"
 					}
 				},
 				{
 					"id": "set-position",
-					"objectClass": "Sprite",
-					"sid": 272364688786051,
+					"objectClass": "btn_restart",
+					"sid": 688049850889369,
 					"parameters": {
-						"x": "Camera.X",
-						"y": "Camera.Y"
+						"x": "spr_camera.X - 50",
+						"y": "spr_camera.Y + 80"
 					}
 				},
 				{
 					"id": "set-position",
-					"objectClass": "Yes",
-					"sid": 372583614941423,
+					"objectClass": "text_gameOver",
+					"sid": 259515014398897,
 					"parameters": {
-						"x": "Camera.X - 90",
-						"y": "Camera.Y + 80"
-					}
-				},
-				{
-					"id": "set-position",
-					"objectClass": "No",
-					"sid": 290066567961755,
-					"parameters": {
-						"x": "Camera.X - 40",
-						"y": "Camera.Y + 200"
+						"x": "spr_camera.X - 270",
+						"y": "spr_camera.Y - 100"
 					}
 				}
 			],
@@ -762,10 +753,10 @@
 			"actions": [
 				{
 					"id": "set-listener-object",
-					"objectClass": "Audio",
+					"objectClass": "sys_audio",
 					"sid": 157939223720379,
 					"parameters": {
-						"object": "Camera"
+						"object": "spr_camera"
 					}
 				},
 				{
@@ -779,34 +770,6 @@
 				}
 			],
 			"sid": 195828157441330
-		},
-		{
-			"eventType": "comment",
-			"text": "For fake wall events (a test -- will likely need to be a seperate sprite for the fake walls)"
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "is-overlapping-another-object",
-					"objectClass": "Player",
-					"sid": 832515614642283,
-					"parameters": {
-						"object": "TiledBackground"
-					}
-				}
-			],
-			"actions": [
-				{
-					"id": "set-visible",
-					"objectClass": "lolGotEm",
-					"sid": 139609489133590,
-					"parameters": {
-						"visibility": "visible"
-					}
-				}
-			],
-			"sid": 482093540131549
 		},
 		{
 			"eventType": "block",
@@ -869,7 +832,7 @@
 				},
 				{
 					"id": "set-opacity",
-					"objectClass": "Player",
+					"objectClass": "spr_player",
 					"sid": 441752918290738,
 					"parameters": {
 						"opacity": "100"
@@ -877,7 +840,7 @@
 				},
 				{
 					"id": "set-max-speed",
-					"objectClass": "Player",
+					"objectClass": "spr_player",
 					"sid": 371135484975688,
 					"behaviorType": "Platform",
 					"parameters": {
@@ -914,51 +877,18 @@
 			"conditions": [
 				{
 					"id": "on-clicked",
-					"objectClass": "Yes",
+					"objectClass": "btn_restart",
 					"sid": 615284193486540
 				}
 			],
 			"actions": [
 				{
-					"callFunction": "restoreControl",
-					"sid": 284632458147532
+					"id": "restart-layout",
+					"objectClass": "System",
+					"sid": 514531385104381
 				}
 			],
 			"sid": 867121337601264
-		},
-		{
-			"eventType": "comment",
-			"text": "Restarts the whole game"
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-clicked",
-					"objectClass": "No",
-					"sid": 637323536699292
-				}
-			],
-			"actions": [
-				{
-					"id": "set-boolean-eventvar",
-					"objectClass": "System",
-					"sid": 903946481608266,
-					"parameters": {
-						"variable": "startUp",
-						"value": "true"
-					}
-				},
-				{
-					"id": "go-to-layout",
-					"objectClass": "System",
-					"sid": 680358715883408,
-					"parameters": {
-						"layout": "Layout 1"
-					}
-				}
-			],
-			"sid": 828204551945952
 		}
 	],
 	"sid": 212594192488707

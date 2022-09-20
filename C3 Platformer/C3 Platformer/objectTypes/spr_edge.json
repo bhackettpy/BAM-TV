@@ -1,7 +1,7 @@
 {
-	"name": "Lava",
+	"name": "spr_edge",
 	"plugin-id": "Sprite",
-	"sid": 830342426316056,
+	"sid": 753637169993054,
 	"isGlobal": false,
 	"instanceVariables": [],
 	"behaviorTypes": [],
@@ -18,12 +18,12 @@
 						"originalSource": "",
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
-						"imageSpriteId": 478458,
+						"imageSpriteId": 5258886,
 						"useCollisionPoly": true,
 						"duration": 1
 					}
 				],
-				"sid": 450615231157265,
+				"sid": 815501635186237,
 				"name": "Animation 1",
 				"isLooping": false,
 				"isPingPong": false,
