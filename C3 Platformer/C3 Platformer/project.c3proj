@@ -92,7 +92,8 @@
 			"spr_edge",
 			"sys_audio",
 			"btn_restart",
-			"text_gameOver"
+			"text_gameOver",
+			"flagAnimation"
 		],
 		"subfolders": []
 	},

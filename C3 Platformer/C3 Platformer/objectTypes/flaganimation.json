@@ -1,0 +1,37 @@
+{
+	"name": "flagAnimation",
+	"plugin-id": "Sprite",
+	"sid": 176087397131692,
+	"isGlobal": false,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 272,
+						"height": 52,
+						"originX": 0.5367647058823529,
+						"originY": 0.4423076923076923,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 6625409,
+						"useCollisionPoly": true,
+						"duration": 1
+					}
+				],
+				"sid": 198877819217107,
+				"name": "Default",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}
