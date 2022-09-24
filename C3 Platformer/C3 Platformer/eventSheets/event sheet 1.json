@@ -911,9 +911,21 @@
 			],
 			"actions": [
 				{
-					"id": "restart-layout",
+					"id": "set-boolean-eventvar",
 					"objectClass": "System",
-					"sid": 514531385104381
+					"sid": 289718068249193,
+					"parameters": {
+						"variable": "startUp",
+						"value": "true"
+					}
+				},
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 148689307780641,
+					"parameters": {
+						"layout": "Layout 1"
+					}
 				}
 			],
 			"sid": 867121337601264
