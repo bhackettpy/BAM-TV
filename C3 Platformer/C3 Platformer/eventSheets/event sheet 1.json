@@ -32,6 +32,16 @@
 			"sid": 813845021881713
 		},
 		{
+			"eventType": "variable",
+			"name": "Coins",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 385296232626671
+		},
+		{
 			"eventType": "group",
 			"disabled": false,
 			"title": "Player Controls",
@@ -737,6 +747,24 @@
 						"x": "spr_camera.X - 270",
 						"y": "spr_camera.Y - 100"
 					}
+				},
+				{
+					"id": "set-position",
+					"objectClass": "CoinCount",
+					"sid": 407225332486781,
+					"parameters": {
+						"x": "spr_camera.X - 320",
+						"y": "spr_camera.Y -220"
+					}
+				},
+				{
+					"id": "set-position",
+					"objectClass": "coinLabel",
+					"sid": 434669048796231,
+					"parameters": {
+						"x": "spr_camera.X - 410",
+						"y": "spr_camera.Y -220"
+					}
 				}
 			],
 			"sid": 225749280194112
@@ -889,6 +917,57 @@
 				}
 			],
 			"sid": 867121337601264
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-tick",
+					"objectClass": "System",
+					"sid": 372312317498492
+				}
+			],
+			"actions": [
+				{
+					"id": "set-text",
+					"objectClass": "CoinCount",
+					"sid": 746254306900941,
+					"parameters": {
+						"text": "Coins"
+					}
+				}
+			],
+			"sid": 427938796178063
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-collision-with-another-object",
+					"objectClass": "spr_player",
+					"sid": 925121441683415,
+					"parameters": {
+						"object": "Coin"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 671149029929591,
+					"parameters": {
+						"variable": "Coins",
+						"value": "Coins+1"
+					}
+				},
+				{
+					"id": "destroy",
+					"objectClass": "Coin",
+					"sid": 939945356238786
+				}
+			],
+			"sid": 815635743767695
 		}
 	],
 	"sid": 212594192488707

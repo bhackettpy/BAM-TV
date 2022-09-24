@@ -55,6 +55,14 @@
 			"bundled": false
 		},
 		{
+			"type": "plugin",
+			"id": "Spritefont2",
+			"name": "Sprite font",
+			"author": "Scirra",
+			"version": "r308.2",
+			"bundled": false
+		},
+		{
 			"type": "behavior",
 			"id": "Platform",
 			"name": "Platform",
@@ -77,6 +85,14 @@
 			"author": "Scirra",
 			"version": "r308.2",
 			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "Anchor",
+			"name": "Anchor",
+			"author": "Scirra",
+			"version": "r308.2",
+			"bundled": false
 		}
 	],
 	"uniqueId": "8g68b5j0jib",
@@ -93,7 +109,12 @@
 			"sys_audio",
 			"btn_restart",
 			"text_gameOver",
-			"flagAnimation"
+			"flagAnimation",
+			"Coin",
+			"Text",
+			"CoinCount",
+			"Sprite",
+			"coinLabel"
 		],
 		"subfolders": []
 	},
@@ -273,6 +294,6 @@
 		"autoReloadScriptsOnPreview": false
 	},
 	"viewportWidth": 854,
-	"viewportHeight": 480,
+	"viewportHeight": 487,
 	"firstLayout": null
 }
