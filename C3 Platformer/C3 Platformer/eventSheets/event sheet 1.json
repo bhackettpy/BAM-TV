@@ -906,6 +906,15 @@
 						"variable": "countMowers",
 						"value": "0"
 					}
+				},
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 595331268576700,
+					"parameters": {
+						"variable": "Coins",
+						"value": "0"
+					}
 				}
 			],
 			"sid": 195828157441330
