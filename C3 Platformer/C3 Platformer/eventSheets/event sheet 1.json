@@ -749,10 +749,10 @@
 				{
 					"id": "set-position",
 					"objectClass": "spr_lava",
-					"sid": 547941220710238,
+					"sid": 436885453546860,
 					"parameters": {
 						"x": "spr_camera.X",
-						"y": "spr_camera.Y + 400"
+						"y": "spr_camera.Y + 380"
 					}
 				},
 				{
@@ -824,7 +824,7 @@
 				{
 					"id": "set-visible",
 					"objectClass": "spr_lava",
-					"sid": 310802702415465,
+					"sid": 403579253249936,
 					"parameters": {
 						"visibility": "invisible"
 					}
