@@ -33,6 +33,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "countMowers",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 669723659882674
+		},
+		{
+			"eventType": "variable",
 			"name": "Coins",
 			"type": "number",
 			"initialValue": "0",
@@ -392,40 +402,18 @@
 								"outer-gain": "0",
 								"tag-optional": "\"daMower\""
 							}
+						},
+						{
+							"id": "add-to-eventvar",
+							"objectClass": "System",
+							"sid": 762089837458820,
+							"parameters": {
+								"variable": "countMowers",
+								"value": "1"
+							}
 						}
 					],
 					"sid": 718612344811019
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "is-on-screen",
-							"objectClass": "spr_lawnmower",
-							"sid": 620669416559692,
-							"isInverted": true
-						}
-					],
-					"actions": [
-						{
-							"id": "stop",
-							"objectClass": "sys_audio",
-							"sid": 754021357509931,
-							"parameters": {
-								"tag": "\"daMower\""
-							}
-						},
-						{
-							"id": "set-boolean-instvar",
-							"objectClass": "spr_lawnmower",
-							"sid": 390637401582582,
-							"parameters": {
-								"instance-variable": "playingSound",
-								"value": "false"
-							}
-						}
-					],
-					"sid": 158614246778551
 				},
 				{
 					"eventType": "block",
@@ -583,6 +571,46 @@
 							"sid": 682189037675709
 						}
 					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-on-screen",
+							"objectClass": "spr_lawnmower",
+							"sid": 636224431060289,
+							"isInverted": true
+						},
+						{
+							"id": "is-boolean-instance-variable-set",
+							"objectClass": "spr_lawnmower",
+							"sid": 706390337123778,
+							"parameters": {
+								"instance-variable": "playingSound"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "spr_lawnmower",
+							"sid": 880941225330943,
+							"parameters": {
+								"instance-variable": "playingSound",
+								"value": "false"
+							}
+						},
+						{
+							"id": "subtract-from-eventvar",
+							"objectClass": "System",
+							"sid": 131412717010352,
+							"parameters": {
+								"variable": "countMowers",
+								"value": "1"
+							}
+						}
+					],
+					"sid": 228972709779672
 				}
 			],
 			"sid": 661146059474078
@@ -749,10 +777,10 @@
 				{
 					"id": "set-position",
 					"objectClass": "spr_lava",
-					"sid": 436885453546860,
+					"sid": 842885448337802,
 					"parameters": {
 						"x": "spr_camera.X",
-						"y": "spr_camera.Y + 380"
+						"y": "spr_camera.Y + 370"
 					}
 				},
 				{
@@ -785,14 +813,50 @@
 				{
 					"id": "set-position",
 					"objectClass": "coinLabel",
-					"sid": 434669048796231,
+					"sid": 947556111635261,
 					"parameters": {
 						"x": "spr_camera.X - 410",
-						"y": "spr_camera.Y -220"
+						"y": "spr_camera.Y - 220"
+					}
+				},
+				{
+					"id": "set-text",
+					"objectClass": "CoinCount",
+					"sid": 527686449722053,
+					"parameters": {
+						"text": "Coins"
 					}
 				}
 			],
 			"sid": 225749280194112
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-tick",
+					"objectClass": "System",
+					"sid": 522334047335074
+				},
+				{
+					"id": "compare-eventvar",
+					"objectClass": "System",
+					"sid": 914230887119525,
+					"parameters": {
+						"variable": "countMowers",
+						"comparison": 0,
+						"value": "0"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "stop-all",
+					"objectClass": "sys_audio",
+					"sid": 616815815008767
+				}
+			],
+			"sid": 278168169594589
 		},
 		{
 			"eventType": "block",
@@ -813,6 +877,11 @@
 					}
 				},
 				{
+					"id": "stop-all",
+					"objectClass": "sys_audio",
+					"sid": 730620556159958
+				},
+				{
 					"id": "set-layer-visible",
 					"objectClass": "System",
 					"sid": 990183374138793,
@@ -827,6 +896,15 @@
 					"sid": 403579253249936,
 					"parameters": {
 						"visibility": "invisible"
+					}
+				},
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 985497820636515,
+					"parameters": {
+						"variable": "countMowers",
+						"value": "0"
 					}
 				}
 			],
@@ -953,27 +1031,6 @@
 				}
 			],
 			"sid": 867121337601264
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "every-tick",
-					"objectClass": "System",
-					"sid": 372312317498492
-				}
-			],
-			"actions": [
-				{
-					"id": "set-text",
-					"objectClass": "CoinCount",
-					"sid": 746254306900941,
-					"parameters": {
-						"text": "Coins"
-					}
-				}
-			],
-			"sid": 427938796178063
 		},
 		{
 			"eventType": "block",
