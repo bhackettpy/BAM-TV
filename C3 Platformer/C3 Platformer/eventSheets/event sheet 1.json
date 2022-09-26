@@ -1040,6 +1040,15 @@
 						"variable": "startUp"
 					},
 					"isInverted": true
+				},
+				{
+					"id": "layer-is-visible",
+					"objectClass": "System",
+					"sid": 835133238003045,
+					"parameters": {
+						"layer": "1"
+					},
+					"isInverted": true
 				}
 			],
 			"actions": [
