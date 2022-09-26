@@ -653,6 +653,14 @@
 								"variable": "startUp",
 								"value": "false"
 							}
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "spr_lava",
+							"sid": 492035431697685,
+							"parameters": {
+								"visibility": "visible"
+							}
 						}
 					],
 					"sid": 963243157815846
@@ -700,6 +708,14 @@
 								"layer": "1",
 								"visibility": "visible"
 							}
+						},
+						{
+							"id": "set-opacity",
+							"objectClass": "spr_player",
+							"sid": 883468552227019,
+							"parameters": {
+								"opacity": "50"
+							}
 						}
 					],
 					"sid": 942125035035747
@@ -724,10 +740,19 @@
 				{
 					"id": "set-position",
 					"objectClass": "spr_camera",
-					"sid": 825350774235109,
+					"sid": 476639931971466,
 					"parameters": {
 						"x": "448",
-						"y": "lerp(spr_camera.Y, spr_player.Y - 125, 0.01)"
+						"y": "lerp(spr_camera.Y, spr_player.Y - 125, 0.0025)"
+					}
+				},
+				{
+					"id": "set-position",
+					"objectClass": "spr_lava",
+					"sid": 547941220710238,
+					"parameters": {
+						"x": "spr_camera.X",
+						"y": "spr_camera.Y + 400"
 					}
 				},
 				{
@@ -795,6 +820,14 @@
 						"layer": "1",
 						"visibility": "invisible"
 					}
+				},
+				{
+					"id": "set-visible",
+					"objectClass": "spr_lava",
+					"sid": 310802702415465,
+					"parameters": {
+						"visibility": "invisible"
+					}
 				}
 			],
 			"sid": 195828157441330
@@ -849,15 +882,6 @@
 			"eventType": "function-block",
 			"conditions": [],
 			"actions": [
-				{
-					"id": "set-boolean-eventvar",
-					"objectClass": "System",
-					"sid": 222132647980628,
-					"parameters": {
-						"variable": "startUp",
-						"value": "true"
-					}
-				},
 				{
 					"id": "set-opacity",
 					"objectClass": "spr_player",
@@ -980,6 +1004,51 @@
 				}
 			],
 			"sid": 815635743767695
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-tick",
+					"objectClass": "System",
+					"sid": 502863753530865
+				},
+				{
+					"id": "compare-eventvar",
+					"objectClass": "System",
+					"sid": 882242038551020,
+					"parameters": {
+						"variable": "countDownTime",
+						"comparison": 0,
+						"value": "0"
+					}
+				},
+				{
+					"id": "is-overlapping-another-object",
+					"objectClass": "spr_lava",
+					"sid": 650628008193096,
+					"parameters": {
+						"object": "spr_player"
+					},
+					"isInverted": true
+				},
+				{
+					"id": "compare-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 303358832629081,
+					"parameters": {
+						"variable": "startUp"
+					},
+					"isInverted": true
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "restoreControl",
+					"sid": 371328045234054
+				}
+			],
+			"sid": 987461262593059
 		}
 	],
 	"sid": 212594192488707
