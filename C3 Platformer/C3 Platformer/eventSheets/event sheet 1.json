@@ -13,16 +13,6 @@
 		},
 		{
 			"eventType": "variable",
-			"name": "startUp",
-			"type": "boolean",
-			"initialValue": "true",
-			"comment": "Ensure the window doesn't pop up when the player starts the game",
-			"isStatic": false,
-			"isConstant": false,
-			"sid": 173585861020227
-		},
-		{
-			"eventType": "variable",
 			"name": "countDownTime",
 			"type": "number",
 			"initialValue": "0",
@@ -33,16 +23,6 @@
 		},
 		{
 			"eventType": "variable",
-			"name": "countMowers",
-			"type": "number",
-			"initialValue": "0",
-			"comment": "",
-			"isStatic": false,
-			"isConstant": false,
-			"sid": 669723659882674
-		},
-		{
-			"eventType": "variable",
 			"name": "Coins",
 			"type": "number",
 			"initialValue": "0",
@@ -50,6 +30,96 @@
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 385296232626671
+		},
+		{
+			"eventType": "variable",
+			"name": "isLavaRising",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 664258296749904
+		},
+		{
+			"eventType": "variable",
+			"name": "seeActiveMower",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 776946962778019
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 381701629486966
+				}
+			],
+			"actions": [
+				{
+					"id": "set-listener-object",
+					"objectClass": "sys_audio",
+					"sid": 923230225872228,
+					"parameters": {
+						"object": "spr_camera"
+					}
+				},
+				{
+					"id": "stop-all",
+					"objectClass": "sys_audio",
+					"sid": 823079629672225
+				},
+				{
+					"id": "set-layer-visible",
+					"objectClass": "System",
+					"sid": 913372619920727,
+					"parameters": {
+						"layer": "1",
+						"visibility": "invisible"
+					}
+				},
+				{
+					"id": "set-visible",
+					"objectClass": "spr_lava",
+					"sid": 977729465880937,
+					"parameters": {
+						"visibility": "visible"
+					}
+				},
+				{
+					"id": "set-position",
+					"objectClass": "spr_lava",
+					"sid": 567486000520992,
+					"parameters": {
+						"x": "spr_camera.x",
+						"y": "spr_camera.Y + 2500"
+					}
+				},
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 487783825867919,
+					"parameters": {
+						"variable": "Coins",
+						"value": "0"
+					}
+				},
+				{
+					"id": "set-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 689378220027762,
+					"parameters": {
+						"variable": "isLavaRising",
+						"value": "false"
+					}
+				}
+			],
+			"sid": 100204298439114
 		},
 		{
 			"eventType": "group",
@@ -211,6 +281,43 @@
 						}
 					],
 					"sid": 344712788854483
+				},
+				{
+					"eventType": "comment",
+					"text": "When the player reaches the marker, the lava will start rising"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-overlapping-another-object",
+							"objectClass": "spr_marker",
+							"sid": 594482123624499,
+							"parameters": {
+								"object": "spr_player"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 200379331262705,
+							"parameters": {
+								"variable": "isLavaRising",
+								"value": "true"
+							}
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "spr_lava",
+							"sid": 192973362242366,
+							"parameters": {
+								"visibility": "visible"
+							}
+						}
+					],
+					"sid": 389853887051115
 				}
 			],
 			"sid": 605792722094292
@@ -362,73 +469,16 @@
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "is-on-screen",
-							"objectClass": "spr_lawnmower",
-							"sid": 824598952249271
-						},
-						{
-							"id": "is-boolean-instance-variable-set",
-							"objectClass": "spr_lawnmower",
-							"sid": 665875075706169,
-							"parameters": {
-								"instance-variable": "playingSound"
-							},
-							"isInverted": true
-						}
-					],
-					"actions": [
-						{
-							"id": "set-boolean-instvar",
-							"objectClass": "spr_lawnmower",
-							"sid": 358402994428492,
-							"parameters": {
-								"instance-variable": "playingSound",
-								"value": "true"
-							}
-						},
-						{
-							"id": "play-at-position",
-							"objectClass": "sys_audio",
-							"sid": 736269225080720,
-							"parameters": {
-								"audio-file": "lawn-mower-sound",
-								"loop": "looping",
-								"volume": "-5",
-								"x": "spr_lawnmower.X",
-								"y": "spr_lawnmower.Y",
-								"angle": "0",
-								"inner-angle": "360",
-								"outer-angle": "360",
-								"outer-gain": "0",
-								"tag-optional": "\"daMower\""
-							}
-						},
-						{
-							"id": "add-to-eventvar",
-							"objectClass": "System",
-							"sid": 762089837458820,
-							"parameters": {
-								"variable": "countMowers",
-								"value": "1"
-							}
-						}
-					],
-					"sid": 718612344811019
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
 							"id": "on-collision-with-another-object",
 							"objectClass": "spr_lawnmower",
-							"sid": 110069647825285,
+							"sid": 866878101629589,
 							"parameters": {
 								"object": "spr_player"
 							}
 						}
 					],
 					"actions": [],
-					"sid": 482111502877127,
+					"sid": 992824483877309,
 					"children": [
 						{
 							"eventType": "block",
@@ -436,7 +486,7 @@
 								{
 									"id": "compare-x",
 									"objectClass": "spr_lawnmower",
-									"sid": 963270236814247,
+									"sid": 594518222194743,
 									"parameters": {
 										"comparison": 2,
 										"x-co-ordinate": "spr_player.x"
@@ -447,7 +497,7 @@
 								{
 									"id": "set-max-speed",
 									"objectClass": "spr_player",
-									"sid": 493736467733248,
+									"sid": 759456735980374,
 									"behaviorType": "Platform",
 									"parameters": {
 										"max-speed": "1000"
@@ -456,7 +506,7 @@
 								{
 									"id": "set-vector-x",
 									"objectClass": "spr_player",
-									"sid": 648246948506255,
+									"sid": 896153536897088,
 									"behaviorType": "Platform",
 									"parameters": {
 										"vector-x": "Self.X + 750"
@@ -465,7 +515,7 @@
 								{
 									"id": "simulate-control",
 									"objectClass": "spr_player",
-									"sid": 497787774366097,
+									"sid": 872438298430655,
 									"behaviorType": "Platform",
 									"parameters": {
 										"control": "jump"
@@ -474,7 +524,7 @@
 								{
 									"id": "set-opacity",
 									"objectClass": "spr_player",
-									"sid": 835625413988969,
+									"sid": 814122027471151,
 									"parameters": {
 										"opacity": "50"
 									}
@@ -482,7 +532,7 @@
 								{
 									"id": "set-boolean-eventvar",
 									"objectClass": "System",
-									"sid": 961585883854626,
+									"sid": 914269451388769,
 									"parameters": {
 										"variable": "disableControls",
 										"value": "true"
@@ -491,14 +541,14 @@
 								{
 									"id": "set-eventvar-value",
 									"objectClass": "System",
-									"sid": 325626320840620,
+									"sid": 301996129372040,
 									"parameters": {
 										"variable": "countDownTime",
 										"value": "3"
 									}
 								}
 							],
-							"sid": 530523362739737
+							"sid": 129251685008619
 						},
 						{
 							"eventType": "block",
@@ -506,7 +556,7 @@
 								{
 									"id": "compare-x",
 									"objectClass": "spr_lawnmower",
-									"sid": 174180454665902,
+									"sid": 720303259073193,
 									"parameters": {
 										"comparison": 4,
 										"x-co-ordinate": "spr_player.X"
@@ -517,7 +567,7 @@
 								{
 									"id": "set-max-speed",
 									"objectClass": "spr_player",
-									"sid": 620430646445683,
+									"sid": 465561647556300,
 									"behaviorType": "Platform",
 									"parameters": {
 										"max-speed": "1000"
@@ -526,7 +576,7 @@
 								{
 									"id": "set-vector-x",
 									"objectClass": "spr_player",
-									"sid": 165345538547667,
+									"sid": 946615827718183,
 									"behaviorType": "Platform",
 									"parameters": {
 										"vector-x": "Self.X - 7500"
@@ -535,7 +585,7 @@
 								{
 									"id": "simulate-control",
 									"objectClass": "spr_player",
-									"sid": 169901037521747,
+									"sid": 584017189310358,
 									"behaviorType": "Platform",
 									"parameters": {
 										"control": "jump"
@@ -544,7 +594,7 @@
 								{
 									"id": "set-opacity",
 									"objectClass": "spr_player",
-									"sid": 136389032592284,
+									"sid": 692471935264092,
 									"parameters": {
 										"opacity": "50"
 									}
@@ -552,7 +602,7 @@
 								{
 									"id": "set-boolean-eventvar",
 									"objectClass": "System",
-									"sid": 607214565112847,
+									"sid": 707408049293013,
 									"parameters": {
 										"variable": "disableControls",
 										"value": "true"
@@ -561,14 +611,14 @@
 								{
 									"id": "set-eventvar-value",
 									"objectClass": "System",
-									"sid": 179352884911490,
+									"sid": 342321162850726,
 									"parameters": {
 										"variable": "countDownTime",
 										"value": "3"
 									}
 								}
 							],
-							"sid": 682189037675709
+							"sid": 375868526808250
 						}
 					]
 				},
@@ -576,144 +626,19 @@
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "is-on-screen",
-							"objectClass": "spr_lawnmower",
-							"sid": 636224431060289,
-							"isInverted": true
-						},
-						{
-							"id": "is-boolean-instance-variable-set",
-							"objectClass": "spr_lawnmower",
-							"sid": 706390337123778,
-							"parameters": {
-								"instance-variable": "playingSound"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "set-boolean-instvar",
-							"objectClass": "spr_lawnmower",
-							"sid": 880941225330943,
-							"parameters": {
-								"instance-variable": "playingSound",
-								"value": "false"
-							}
-						},
-						{
-							"id": "subtract-from-eventvar",
-							"objectClass": "System",
-							"sid": 131412717010352,
-							"parameters": {
-								"variable": "countMowers",
-								"value": "1"
-							}
-						}
-					],
-					"sid": 228972709779672
-				}
-			],
-			"sid": 661146059474078
-		},
-		{
-			"eventType": "group",
-			"disabled": false,
-			"title": "Lava Mechanic",
-			"description": "",
-			"isActiveOnStart": true,
-			"children": [
-				{
-					"eventType": "comment",
-					"text": "Player start up phase -- this ensures that the annoying pop up window doesn't show up when the player starts the game\nShould also work when the player escapes from the popup window"
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
 							"id": "is-overlapping-another-object",
-							"objectClass": "spr_player",
-							"sid": 379533994704179,
+							"objectClass": "spr_audioOverlay",
+							"sid": 556629916635441,
 							"parameters": {
-								"object": "spr_lava"
+								"object": "spr_lawnmower"
 							}
 						},
 						{
 							"id": "compare-boolean-eventvar",
 							"objectClass": "System",
-							"sid": 478623943235828,
+							"sid": 849411566108722,
 							"parameters": {
-								"variable": "startUp"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "set-boolean-eventvar",
-							"objectClass": "System",
-							"sid": 587279814778812,
-							"parameters": {
-								"variable": "disableControls",
-								"value": "false"
-							}
-						}
-					],
-					"sid": 539514306738769
-				},
-				{
-					"eventType": "comment",
-					"text": "Once player leaves the lava area, the popup window will start showing up when the player is back in the lava area again"
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "else",
-							"objectClass": "System",
-							"sid": 747625738875885
-						}
-					],
-					"actions": [
-						{
-							"id": "set-boolean-eventvar",
-							"objectClass": "System",
-							"sid": 231825360919915,
-							"parameters": {
-								"variable": "startUp",
-								"value": "false"
-							}
-						},
-						{
-							"id": "set-visible",
-							"objectClass": "spr_lava",
-							"sid": 492035431697685,
-							"parameters": {
-								"visibility": "visible"
-							}
-						}
-					],
-					"sid": 963243157815846
-				},
-				{
-					"eventType": "comment",
-					"text": "When the player lands back in lava area, the popup window should show up"
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "is-overlapping-another-object",
-							"objectClass": "spr_player",
-							"sid": 163999804411890,
-							"parameters": {
-								"object": "spr_lava"
-							}
-						},
-						{
-							"id": "compare-boolean-eventvar",
-							"objectClass": "System",
-							"sid": 836728073706896,
-							"parameters": {
-								"variable": "startUp"
+								"variable": "seeActiveMower"
 							},
 							"isInverted": true
 						}
@@ -722,34 +647,78 @@
 						{
 							"id": "set-boolean-eventvar",
 							"objectClass": "System",
-							"sid": 319469448071285,
+							"sid": 586912150775028,
 							"parameters": {
-								"variable": "disableControls",
+								"variable": "seeActiveMower",
 								"value": "true"
 							}
 						},
 						{
-							"id": "set-layer-visible",
-							"objectClass": "System",
-							"sid": 103952457057429,
+							"id": "play-at-object",
+							"objectClass": "sys_audio",
+							"sid": 117741461261553,
 							"parameters": {
-								"layer": "1",
-								"visibility": "visible"
-							}
-						},
-						{
-							"id": "set-opacity",
-							"objectClass": "spr_player",
-							"sid": 883468552227019,
-							"parameters": {
-								"opacity": "50"
+								"audio-file": "lawn-mower-sound",
+								"loop": "looping",
+								"volume": "-5",
+								"object": "spr_lawnmower",
+								"inner-angle": "360",
+								"outer-angle": "360",
+								"outer-gain": "0",
+								"tag-optional": "\"\""
 							}
 						}
 					],
-					"sid": 942125035035747
+					"sid": 452770738482537
 				}
 			],
-			"sid": 918801499325970
+			"sid": 661146059474078
+		},
+		{
+			"eventType": "comment",
+			"text": "When the player lands back in lava area, the popup window should show up"
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-overlapping-another-object",
+					"objectClass": "spr_player",
+					"sid": 280124197792993,
+					"parameters": {
+						"object": "spr_lava"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 152451185462225,
+					"parameters": {
+						"variable": "disableControls",
+						"value": "true"
+					}
+				},
+				{
+					"id": "set-layer-visible",
+					"objectClass": "System",
+					"sid": 434037879768398,
+					"parameters": {
+						"layer": "1",
+						"visibility": "visible"
+					}
+				},
+				{
+					"id": "set-opacity",
+					"objectClass": "spr_player",
+					"sid": 758304792091719,
+					"parameters": {
+						"opacity": "50"
+					}
+				}
+			],
+			"sid": 642464022560018
 		},
 		{
 			"eventType": "comment",
@@ -776,11 +745,11 @@
 				},
 				{
 					"id": "set-position",
-					"objectClass": "spr_lava",
-					"sid": 842885448337802,
+					"objectClass": "spr_audioOverlay",
+					"sid": 672868743095644,
 					"parameters": {
-						"x": "spr_camera.X",
-						"y": "spr_camera.Y + 370"
+						"x": "spr_camera.x",
+						"y": "spr_camera.Y"
 					}
 				},
 				{
@@ -836,88 +805,77 @@
 				{
 					"id": "every-tick",
 					"objectClass": "System",
-					"sid": 522334047335074
+					"sid": 478814540807660
 				},
 				{
-					"id": "compare-eventvar",
+					"id": "compare-boolean-eventvar",
 					"objectClass": "System",
-					"sid": 914230887119525,
+					"sid": 909977491918821,
 					"parameters": {
-						"variable": "countMowers",
-						"comparison": 0,
-						"value": "0"
+						"variable": "isLavaRising"
 					}
 				}
 			],
 			"actions": [
 				{
-					"id": "stop-all",
-					"objectClass": "sys_audio",
-					"sid": 616815815008767
+					"id": "set-y",
+					"objectClass": "spr_lava",
+					"sid": 452117041563429,
+					"parameters": {
+						"y": "spr_lava.Y - 0.75"
+					}
 				}
 			],
-			"sid": 278168169594589
+			"sid": 225332199124729
+		},
+		{
+			"eventType": "comment",
+			"text": "Game checks if the game is not frozen from lawnmower, and lava has killed player"
 		},
 		{
 			"eventType": "block",
 			"conditions": [
 				{
-					"id": "on-start-of-layout",
+					"id": "every-tick",
 					"objectClass": "System",
-					"sid": 769129563781391
+					"sid": 711486004831012
+				},
+				{
+					"id": "compare-eventvar",
+					"objectClass": "System",
+					"sid": 200112735918380,
+					"parameters": {
+						"variable": "countDownTime",
+						"comparison": 0,
+						"value": "0"
+					}
+				},
+				{
+					"id": "is-overlapping-another-object",
+					"objectClass": "spr_lava",
+					"sid": 968233058686906,
+					"parameters": {
+						"object": "spr_player"
+					},
+					"isInverted": true
+				},
+				{
+					"id": "layer-is-visible",
+					"objectClass": "System",
+					"sid": 799017476118637,
+					"parameters": {
+						"layer": "1"
+					},
+					"isInverted": true
 				}
 			],
 			"actions": [
 				{
-					"id": "set-listener-object",
-					"objectClass": "sys_audio",
-					"sid": 157939223720379,
-					"parameters": {
-						"object": "spr_camera"
-					}
-				},
-				{
-					"id": "stop-all",
-					"objectClass": "sys_audio",
-					"sid": 730620556159958
-				},
-				{
-					"id": "set-layer-visible",
-					"objectClass": "System",
-					"sid": 990183374138793,
-					"parameters": {
-						"layer": "1",
-						"visibility": "invisible"
-					}
-				},
-				{
-					"id": "set-visible",
-					"objectClass": "spr_lava",
-					"sid": 403579253249936,
-					"parameters": {
-						"visibility": "invisible"
-					}
-				},
-				{
-					"id": "set-eventvar-value",
-					"objectClass": "System",
-					"sid": 985497820636515,
-					"parameters": {
-						"variable": "countMowers",
-						"value": "0"
-					}
-				},
-				{
-					"id": "set-eventvar-value",
-					"objectClass": "System",
-					"sid": 595331268576700,
-					"parameters": {
-						"variable": "Coins",
-						"value": "0"
-					}
+					"callFunction": "restoreControl",
+					"sid": 800103641082239
 				}
 			],
-			"sid": 195828157441330
+			"sid": 898932674587713
 		},
 		{
 			"eventType": "block",
@@ -1022,15 +980,6 @@
 			],
 			"actions": [
 				{
-					"id": "set-boolean-eventvar",
-					"objectClass": "System",
-					"sid": 289718068249193,
-					"parameters": {
-						"variable": "startUp",
-						"value": "true"
-					}
-				},
-				{
 					"id": "go-to-layout",
 					"objectClass": "System",
 					"sid": 148689307780641,
@@ -1070,60 +1019,6 @@
 				}
 			],
 			"sid": 815635743767695
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "every-tick",
-					"objectClass": "System",
-					"sid": 502863753530865
-				},
-				{
-					"id": "compare-eventvar",
-					"objectClass": "System",
-					"sid": 882242038551020,
-					"parameters": {
-						"variable": "countDownTime",
-						"comparison": 0,
-						"value": "0"
-					}
-				},
-				{
-					"id": "is-overlapping-another-object",
-					"objectClass": "spr_lava",
-					"sid": 650628008193096,
-					"parameters": {
-						"object": "spr_player"
-					},
-					"isInverted": true
-				},
-				{
-					"id": "compare-boolean-eventvar",
-					"objectClass": "System",
-					"sid": 303358832629081,
-					"parameters": {
-						"variable": "startUp"
-					},
-					"isInverted": true
-				},
-				{
-					"id": "layer-is-visible",
-					"objectClass": "System",
-					"sid": 835133238003045,
-					"parameters": {
-						"layer": "1"
-					},
-					"isInverted": true
-				}
-			],
-			"actions": [
-				{
-					"callFunction": "restoreControl",
-					"sid": 371328045234054
-				}
-			],
-			"sid": 987461262593059
 		}
 	],
 	"sid": 212594192488707

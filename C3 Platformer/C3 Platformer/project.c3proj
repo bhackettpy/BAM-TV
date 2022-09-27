@@ -114,7 +114,9 @@
 			"Text",
 			"CoinCount",
 			"Sprite",
-			"coinLabel"
+			"coinLabel",
+			"spr_marker",
+			"spr_audioOverlay"
 		],
 		"subfolders": []
 	},
